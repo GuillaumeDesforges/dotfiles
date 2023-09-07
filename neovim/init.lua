@@ -23,4 +23,4 @@ require("plugins/nvim-tree-lua")
 
 -- load mapping
 require("mapping")
-
+require("which-key").setup()

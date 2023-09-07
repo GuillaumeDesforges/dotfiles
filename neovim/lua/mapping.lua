@@ -18,12 +18,11 @@ local mappings = {
   }
 }
 
-for key, maps in pairs(mappings) do
-  for _, map in ipairs(maps) do
-    local mode = key
-    local lhs = map[1]
-    local rhs = map[2]
-    local opts = map[3]
-    vim.keymap.set(mode, lhs, rhs, opts)
+for mode_key, mode_mappings in pairs(mappings) do
+  for _, mapping in ipairs(mode_mappings) do
+    local mapping_keys = mapping[1]
+    local mapping_func = mapping[2]
+    local mapping_desc = mapping[3]
+    vim.keymap.set(mode_key, mapping_keys, mapping_func, mapping_desc)
   end
 end
