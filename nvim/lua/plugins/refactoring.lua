@@ -13,7 +13,7 @@ return {
       { "<leader>cRi", function() require('refactoring').refactor('Inline Variable') end, desc="Inline Variable", mode={"n", "x"} },
     },
     config = function()
-      require("refactoring").setup()
+      require("refactoring").setup({})
     end,
   },
 }

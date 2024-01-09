@@ -50,26 +50,8 @@ return {
       timeout_ms = nil,
     },
     -- LSP Server Settings
-    ---@type lspconfig.options
     servers = {
-      jsonls = {},
-      lua_ls = {
-        -- mason = false, -- set to false if you don't want this server to be installed with mason
-        -- Use this to add any additional keymaps
-        -- for specific lsp servers
-        ---@type LazyKeys[]
-        -- keys = {},
-        settings = {
-          Lua = {
-            workspace = {
-              checkThirdParty = false,
-            },
-            completion = {
-              callSnippet = "Replace",
-            },
-          },
-        },
-      },
+      lua_ls = { },
       pyright = {
         settings = {
           pyright = { autoImportCompletion = true },
@@ -83,10 +65,12 @@ return {
           },
         },
       },
+      rust_analyzer = { },
+      templ = { },
+      gopls = { },
     },
     -- you can do any additional lsp server setup here
     -- return true if you don't want this server to be setup with lspconfig
-    ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
     setup = {
       -- example to setup with typescript.nvim
       -- tsserver = function(_, opts)
@@ -99,22 +83,22 @@ return {
   },
   ---@param opts PluginLspOpts
   config = function(_, opts)
-    local Util = require("lazyvim.util")
-
-    if Util.has("neoconf.nvim") then
+    if require("lazyvim.util").has("neoconf.nvim") then
       local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
       require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
     end
+
     -- setup autoformat
-    require("lazyvim.plugins.lsp.format").setup(opts)
+    require("lazyvim.util").format.setup()
+
     -- setup formatting and keymaps
-    Util.on_attach(function(client, buffer)
+    require("lazyvim.util").lsp.on_attach(function(client, buffer)
       require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
     end)
 
     local register_capability = vim.lsp.handlers["client/registerCapability"]
 
-    vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx)
+    vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx) ---@diagnostic disable-line: duplicate-set-field
       local ret = register_capability(err, res, ctx)
       local client_id = ctx.client_id
       ---@type lsp.Client
@@ -133,7 +117,7 @@ return {
     local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
 
     if opts.inlay_hints.enabled and inlay_hint then
-      Util.on_attach(function(client, buffer)
+      require("lazyvim.util").lsp.on_attach(function(client, buffer)
         if client.supports_method('textDocument/inlayHint') then
           inlay_hint(buffer, true)
         end
@@ -154,6 +138,7 @@ return {
 
     vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
+    -- servers
     local servers = opts.servers
     local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
     local capabilities = vim.tbl_deep_extend(
@@ -181,36 +166,12 @@ return {
       require("lspconfig")[server].setup(server_opts)
     end
 
-    -- get all the servers that are available through mason-lspconfig
-    local have_mason, mlsp = pcall(require, "mason-lspconfig")
-    local all_mslp_servers = {}
-    if have_mason then
-      all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
-    end
-
-    local ensure_installed = {} ---@type string[]
     for server, server_opts in pairs(servers) do
       if server_opts then
         server_opts = server_opts == true and {} or server_opts
         -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-        if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
-          setup(server)
-        else
-          ensure_installed[#ensure_installed + 1] = server
-        end
+        setup(server)
       end
-    end
-
-    if have_mason then
-      mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
-    end
-
-    if Util.lsp_get_config("denols") and Util.lsp_get_config("tsserver") then
-      local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-      Util.lsp_disable("tsserver", is_deno)
-      Util.lsp_disable("denols", function(root_dir)
-        return not is_deno(root_dir)
-      end)
     end
   end,
 }
