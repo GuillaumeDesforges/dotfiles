@@ -1,10 +1,25 @@
 return {
+  -- disable a few default mappings in favor of Copilot autocomplete
+  {
+    "L3MON4D3/LuaSnip",
+    -- stylua: ignore
+    keys = {
+      -- removed in favor of Copilot
+      { "<tab>", false, mode = "i" },
+      { "<tab>", false, mode = "s" },
+      { "<s-tab>", false, mode = { "i", "s" } },
+    },
+  },
+  -- setup Copilot suggestions
   {
     "zbirenbaum/copilot.lua",
     opts = {
       suggestion = {
         enabled = true,
         auto_trigger = true,
+        keymap = {
+          accept = false,
+        },
       },
       panel = { enabled = false },
       filetypes = {
@@ -21,11 +36,11 @@ return {
         yaml = false,
       },
     },
-    keys = {
-      -- map Tab in insert mode to accept copilot suggestion
-      {
-        "<tab>",
-        mode = { "i" },
+    config = function(_, opts)
+      require("copilot").setup(opts)
+      -- supertab behavior: press tab to accept suggestion
+      vim.keymap.set(
+        "i", "<tab>",
         function()
           if require("copilot.suggestion").is_visible() then
             require("copilot.suggestion").accept()
@@ -33,24 +48,19 @@ return {
             vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
           end
         end,
-        desc = "i-mode Tab with copilot accept",
-      },
-    },
+        { silent = true, }
+      )
+    end,
   },
-  -- add 'copilot' component to lualine
+  -- add 'copilot' component to lualine, see ./ui.lua
   { "AndreM222/copilot-lualine" },
-  -- add Copilot Chat
+  -- setup Copilot Chat
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",
     dependencies = {
-      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+      { "zbirenbaum/copilot.lua" },
+      { "nvim-lua/plenary.nvim" },
     },
-    opts = {
-      debug = true, -- Enable debugging
-      -- See Configuration section for rest
-    },
-    -- See Commands section for default commands if you want to lazy load on them
   },
 }
