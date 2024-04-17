@@ -18,7 +18,7 @@ return {
         enabled = true,
         auto_trigger = true,
         keymap = {
-          accept = false,
+          accept = "<c-a>",
         },
       },
       panel = { enabled = false },
@@ -32,25 +32,11 @@ return {
         scala = true,
         typescript = true,
         -- disabled
+        json = false,
         markdown = false,
         yaml = false,
       },
     },
-    config = function(_, opts)
-      require("copilot").setup(opts)
-      -- supertab behavior: press tab to accept suggestion
-      vim.keymap.set(
-        "i", "<tab>",
-        function()
-          if require("copilot.suggestion").is_visible() then
-            require("copilot.suggestion").accept()
-          else
-            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-          end
-        end,
-        { silent = true, }
-      )
-    end,
   },
   -- add 'copilot' component to lualine, see ./ui.lua
   { "AndreM222/copilot-lualine" },
@@ -62,5 +48,6 @@ return {
       { "zbirenbaum/copilot.lua" },
       { "nvim-lua/plenary.nvim" },
     },
+    opts = {},
   },
 }
