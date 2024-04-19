@@ -1,15 +1,4 @@
 return {
-  -- disable a few default mappings in favor of Copilot autocomplete
-  {
-    "L3MON4D3/LuaSnip",
-    -- stylua: ignore
-    keys = {
-      -- removed in favor of Copilot
-      { "<tab>", false, mode = "i" },
-      { "<tab>", false, mode = "s" },
-      { "<s-tab>", false, mode = { "i", "s" } },
-    },
-  },
   -- setup Copilot suggestions
   {
     "zbirenbaum/copilot.lua",
