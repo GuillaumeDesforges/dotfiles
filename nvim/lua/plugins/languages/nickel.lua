@@ -1,4 +1,8 @@
 return {
+  -- required to detect Nickel files
+  {
+    "nickel-lang/vim-nickel",
+  },
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
