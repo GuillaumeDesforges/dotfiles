@@ -39,7 +39,7 @@ return {
 						},
 					},
 				},
-				ruff_lsp = {},
+				ruff = {},
 			},
 		},
 	},
