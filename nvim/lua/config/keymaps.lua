@@ -8,3 +8,9 @@ local map = vim.keymap.set
 -- buffer navigation
 map("n", "<leader>bn", "<cmd>bn<cr>", { desc = "Next buffer" })
 map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Delete buffer" })
+
+-- prevent arrow navigation
+map("n", "<up>", "<nop>", { silent = true })
+map("n", "<down>", "<nop>", { silent = true })
+map("n", "<left>", "<nop>", { silent = true })
+map("n", "<right>", "<nop>", { silent = true })
