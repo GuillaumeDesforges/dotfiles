@@ -12,6 +12,7 @@ return {
       servers = {
         -- use typescript-tools instead
         tsserver = false,
+        eslint = {},
       },
     },
   },
