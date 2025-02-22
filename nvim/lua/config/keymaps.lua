@@ -14,3 +14,6 @@ map("n", "<up>", "<nop>", { silent = true })
 map("n", "<down>", "<nop>", { silent = true })
 map("n", "<left>", "<nop>", { silent = true })
 map("n", "<right>", "<nop>", { silent = true })
+
+-- terminal navigation
+map("t", "<esc>", "<c-\\><c-n>", { desc = "Exit terminal mode" })
