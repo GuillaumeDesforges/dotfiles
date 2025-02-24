@@ -9,7 +9,7 @@ local map = vim.keymap.set
 map("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bp", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 map("n", "<leader>bP", "<cmd>BufferLineTogglePin<cr>", { desc = "Pin buffer" })
-map("n", "<leader>bd", "bp<bar>sp<bar>bn<bar>bd<cr>", { desc = "Delete buffer" })
+map("n", "<leader>bd", "<cmd>bp<bar>sp<bar>bn<bar>bd<cr>", { desc = "Delete buffer" })
 
 -- prevent arrow navigation
 map("n", "<up>", "<nop>", { silent = true })
