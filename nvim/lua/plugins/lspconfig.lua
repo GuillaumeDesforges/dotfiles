@@ -1,12 +1,9 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
+    event = "LazyFile",
 		dependencies = {
 			{ "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-			{ "folke/neodev.nvim", opts = {} },
-			"mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		---@class PluginLspOpts
@@ -66,7 +63,6 @@ return {
 			vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx) ---@diagnostic disable-line: duplicate-set-field
 				local ret = register_capability(err, res, ctx)
 				local client_id = ctx.client_id
-				---@type lsp.Client
 				local client = vim.lsp.get_client_by_id(client_id)
 				local buffer = vim.api.nvim_get_current_buf()
 				require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
