@@ -19,7 +19,7 @@ return {
           },
         },
         templ = {},
-        golangci_lint_ls = {},
+        -- golangci_lint_ls = {},
       },
     },
   },
