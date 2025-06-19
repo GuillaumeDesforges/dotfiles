@@ -1,4 +1,8 @@
+-- leader key is spacebar
 vim.g.mapleader = " "
+
+-- wrapping
+vim.opt.wrap = false
 
 -- use system clipboard to yank/paste
 vim.opt.clipboard = "unnamedplus"

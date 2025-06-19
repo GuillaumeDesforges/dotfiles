@@ -8,6 +8,8 @@ wk.add({
   { '<leader>bd', ':bd<cr>', desc = 'Delete current buffer' },
   { '<leader>bn', ':bn<cr>', desc = 'Next buffer' },
   { '<leader>bp', ':bp<cr>', desc = 'Previous buffer' },
+	{ '<s-l>', ':bn<cr>', desc = 'Next buffer' },
+	{ '<s-h>', ':bp<cr>', desc = 'Previous buffer' },
 
   { '<leader>q', group = 'Session' },
   { '<leader>qq', ':qa<cr>', desc = 'Quit' },
@@ -22,4 +24,14 @@ wk.add({
   { '<leader>wh', '<c-w>k', desc = "Go to up window" },
   { '<leader>wh', '<c-w>l', desc = "Go to right window" },
   { '<leader>wd', '<c-w>l', desc = "Go to right window" },
+
+  { '<leader>w', group = 'Go to' },
+	{ '<leader>gd', function () vim.lsp.buf.definition() end, desc = "Go to definition" },
+	{ '<leader>gr', function () vim.lsp.buf.references() end, desc = "Go to references" },
+	{ '<leader>ge', function () vim.diagnostic.goto_next({severity=vim.diagnostic.severity.ERROR, wrap = true}) end, desc = "Go to references" },
+
+	{ ']e', function () vim.diagnostic.goto_next({severity=vim.diagnostic.severity.ERROR, wrap = true}) end, desc = "Go to next error" },
+	{ '[e', function () vim.diagnostic.goto_prev({severity=vim.diagnostic.severity.ERROR, wrap = true}) end, desc = "Go to previous error" },
+	{ ']w', function () vim.diagnostic.goto_next({severity=vim.diagnostic.severity.WARNING, wrap = true}) end, desc = "Go to next warning" },
+	{ '[w', function () vim.diagnostic.goto_prev({severity=vim.diagnostic.severity.WARNING, wrap = true}) end, desc = "Go to previous warning" },
 })
