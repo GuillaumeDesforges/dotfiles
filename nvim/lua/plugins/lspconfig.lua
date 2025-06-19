@@ -18,7 +18,6 @@ require('lspconfig')['gopls'].setup {
     usePlaceholders = true,
   }
 }
-vim.lsp.enable('gopls')
 
 -- lua_ls
 require('lspconfig')['lua_ls'].setup {
@@ -26,8 +25,10 @@ require('lspconfig')['lua_ls'].setup {
 }
 vim.lsp.config('lua_ls', {
   on_init = function(client)
+		print(vim.inspect(client.workspace_folders))
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
+			print(vim.inspect(path))
       if
         path ~= vim.fn.stdpath('config')
         and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
@@ -50,7 +51,7 @@ vim.lsp.config('lua_ls', {
       },
       -- Make the server aware of Neovim runtime files
       workspace = {
-        checkThirdParty = false,
+        checkThirdParty = true,
         library = {
           vim.env.VIMRUNTIME,
           -- Depending on the usage, you might want to add additional paths
@@ -65,12 +66,12 @@ vim.lsp.config('lua_ls', {
         -- library = {
         --   vim.api.nvim_get_runtime_file('', true),
         -- }
-      }
+      },
     })
   end,
   settings = {
-    Lua = {}
-  }
+    Lua = {},
+  },
 })
 vim.lsp.enable('lua_ls')
 
