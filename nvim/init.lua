@@ -1,7 +1,21 @@
 vim.g.mapleader = " "
 
-require("bootstrap/rocks")
--- https://github.com/nvim-neorocks/rocks-config.nvim
--- is installed and will load plugin config from `./lua/plugins/`
+-- use system clipboard to yank/paste
+vim.opt.clipboard = "unnamedplus"
 
-vim.keymap.set('n', '<leader>bd', ':bd', { desc = "Delete current buffer" })
+-- tabs
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+
+-- esc on terminal mode
+vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
+
+-- clear highlight
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- plugins
+require("bootstrap/rocks")
+
+-- plugin configs in `./lua/plugins/` are loaded by rocks-configs
+
