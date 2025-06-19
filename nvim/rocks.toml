@@ -15,6 +15,7 @@
 "trouble.nvim" = "3.7.1"
 "telescope.nvim" = "scm"
 "bufferline.nvim" = "4.9.1"
+"conform.nvim" = "9.0.0"
 
 [config]
 plugins_dir = "plugins/"
