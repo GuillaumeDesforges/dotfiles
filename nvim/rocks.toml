@@ -17,6 +17,7 @@
 "bufferline.nvim" = "4.9.1"
 "conform.nvim" = "9.0.0"
 "lazygit.nvim" = "scm"
+"typescript-tools.nvim" = "scm"
 
 [config]
 plugins_dir = "plugins/"
