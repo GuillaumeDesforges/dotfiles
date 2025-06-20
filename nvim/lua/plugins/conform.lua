@@ -3,6 +3,8 @@ local conform = require("conform")
 conform.setup({
 	formatters_by_ft = {
 		go = { "gofmt" },
+		typescript = { "prettierd", "prettier", stop_after_first = true },
+		typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 	},
 	format_on_save = {
 		-- options of conform.format()
