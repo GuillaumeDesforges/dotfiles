@@ -32,15 +32,18 @@ wk.add({
 })
 
 wk.add({
+	{ 'gd',         function() vim.lsp.buf.definition() end,                                                                desc = "Go to definition" },
+	{ 'gr',         function() vim.lsp.buf.references() end,                                                                desc = "Go to references" },
+
 	{ '<leader>w',  group = 'Go to' },
-	{ '<leader>gd', function() vim.lsp.buf.definition() end,                                                            desc = "Go to definition" },
-	{ '<leader>gr', function() vim.lsp.buf.references() end,                                                            desc = "Go to references" },
-	{ '<leader>ge', function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, wrap = true }) end, desc = "Go to references" },
+	{ '<leader>gd', function() vim.lsp.buf.definition() end,                                                                desc = "Go to definition" },
+	{ '<leader>gr', function() vim.lsp.buf.references() end,                                                                desc = "Go to references" },
+	{ '<leader>ge', function() vim.lsp.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, wrap = true }) end, desc = "Go to next error" },
 })
 
 wk.add({
-	{ ']e', function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, wrap = true }) end,   desc = "Go to next error" },
-	{ '[e', function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR, wrap = true }) end,   desc = "Go to previous error" },
-	{ ']w', function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARNING, wrap = true }) end, desc = "Go to next warning" },
-	{ '[w', function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARNING, wrap = true }) end, desc = "Go to previous warning" },
+	{ ']e', function() vim.lsp.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, wrap = true }) end,   desc = "Go to next error" },
+	{ '[e', function() vim.lsp.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR, wrap = true }) end,   desc = "Go to previous error" },
+	{ ']w', function() vim.lsp.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARNING, wrap = true }) end, desc = "Go to next warning" },
+	{ '[w', function() vim.lsp.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARNING, wrap = true }) end, desc = "Go to previous warning" },
 })
