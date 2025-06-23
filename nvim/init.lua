@@ -52,9 +52,11 @@ vim.keymap.set('n', '<leader>wh', '<c-w>l', { desc = "Go to right window" })
 vim.keymap.set('n', '<leader>wd', '<c-w>l', { desc = "Go to right window" })
 
 vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, { desc = "Go to definition" })
+vim.keymap.set('n', 'gy', function() vim.lsp.buf.type_definition() end, { desc = "Go to type definition" })
 vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, { desc = "Go to references" })
 
 vim.keymap.set('n', '<leader>gd', function() vim.lsp.buf.definition() end, { desc = "Go to definition" })
+vim.keymap.set('n', '<leader>gy', function() vim.lsp.buf.type_definition() end, { desc = "Go to type definition" })
 vim.keymap.set('n', '<leader>gr', function() vim.lsp.buf.references() end, { desc = "Go to references" })
 vim.keymap.set('n', '<leader>ge',
 	function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, wrap = true }) end,
@@ -76,3 +78,4 @@ vim.keymap.set('n', '[w',
 	function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN, wrap = true }) end,
 	{ desc = "Go to previous warning" }
 )
+
