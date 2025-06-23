@@ -34,6 +34,7 @@ vim.keymap.set('n', '<leader>qq', ':qa<cr>', { desc = 'Quit' })
 vim.keymap.set('n', '<leader>bd', ':bd<cr>', { desc = 'Delete current buffer' })
 vim.keymap.set('n', '<leader>bn', ':bn<cr>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<leader>bp', ':bp<cr>', { desc = 'Previous buffer' })
+vim.keymap.set("n", "<leader>bP", ":BufferLineTogglePin<cr>", { desc = "Pin buffer" })
 vim.keymap.set('n', '<s-l>', ':bn<cr>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<s-h>', ':bp<cr>', { desc = 'Previous buffer' })
 
@@ -76,8 +77,6 @@ vim.keymap.set('n', '[w',
 	{ desc = "Go to previous warning" }
 )
 
-vim.keymap.set('n', '<leader>cr', function() vim.lsp.buf.rename() end, { desc = "Rename symbol" })
-
 vim.api.nvim_create_autocmd("TermEnter", {
 	callback = function()
 		-- If the terminal window is lazygit, we do not make changes to avoid clashes
@@ -90,3 +89,16 @@ vim.api.nvim_create_autocmd("TermEnter", {
 		end, { buffer = true })
 	end,
 })
+
+vim.keymap.set('n', '<leader>cr', function() vim.lsp.buf.rename() end, { desc = "Rename symbol" })
+
+vim.keymap.set('v', "<leader>cRe", function() require("refactoring").refactor("Extract Function") end,
+	{ desc = "Extract function", })
+vim.keymap.set('v', "<leader>cRf", function() require("refactoring").refactor("Extract Function To File") end,
+	{ desc = "Extract function to file" })
+vim.keymap.set('v', "<leader>cRv", function() require("refactoring").refactor("Extract Variable") end,
+	{ desc = "Extract variable" })
+vim.keymap.set('n', "<leader>cRI", function() require("refactoring").refactor("Inline Function") end,
+	{ desc = "Inline function" })
+vim.keymap.set('n', "<leader>cRi", function() require("refactoring").refactor("Inline Variable") end,
+	{ desc = "Inline Variable" })

@@ -19,6 +19,7 @@
 "lazygit.nvim" = "scm"
 "typescript-tools.nvim" = "scm"
 "snacks.nvim" = "2.22.0"
+"refactoring.nvim" = "scm"
 
 [config]
 plugins_dir = "plugins/"
