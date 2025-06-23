@@ -17,9 +17,6 @@ vim.opt.shiftwidth = 2
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- esc on terminal mode
-vim.keymap.set("t", "<esc>", "<c-\\><c-n>", { desc = "Exit terminal mode" })
-
 -- clear highlight
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
@@ -80,3 +77,16 @@ vim.keymap.set('n', '[w',
 )
 
 vim.keymap.set('n', '<leader>cr', function() vim.lsp.buf.rename() end, { desc = "Rename symbol" })
+
+vim.api.nvim_create_autocmd("TermEnter", {
+	callback = function()
+		-- If the terminal window is lazygit, we do not make changes to avoid clashes
+		if string.find(vim.api.nvim_buf_get_name(0), "lazygit") then
+			return
+		end
+
+		vim.keymap.set("t", "<ESC>", function()
+			vim.cmd("stopinsert")
+		end, { buffer = true })
+	end,
+})
