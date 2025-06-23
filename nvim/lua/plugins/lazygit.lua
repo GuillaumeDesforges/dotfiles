@@ -1,9 +1,5 @@
 require("lazygit")
 
-require("which-key").add({
-	{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "Open LazyGit" },
-})
-
 -- from https://github.com/kdheepak/lazygit.nvim/issues/67
 function EditLineFromLazygit(file_path, line)
 	local path = vim.fn.expand("%:p")

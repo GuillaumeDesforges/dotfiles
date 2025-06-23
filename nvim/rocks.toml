@@ -20,6 +20,7 @@
 "typescript-tools.nvim" = "scm"
 "snacks.nvim" = "2.22.0"
 "nvim-lsp-file-operations" = "scm"
+"gitlinker.nvim" = "5.1.0"
 
 [config]
 plugins_dir = "plugins/"

@@ -29,14 +29,14 @@ require("bootstrap/rocks")
 -- key bindings
 --
 
-vim.keymap.set('n', '<leader>qq', ':qa<cr>', { desc = 'Quit' })
+vim.keymap.set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit' })
 
-vim.keymap.set('n', '<leader>bd', ':bd<cr>', { desc = 'Delete current buffer' })
-vim.keymap.set('n', '<leader>bn', ':bn<cr>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<leader>bp', ':bp<cr>', { desc = 'Previous buffer' })
-vim.keymap.set("n", "<leader>bP", ":BufferLineTogglePin<cr>", { desc = "Pin buffer" })
-vim.keymap.set('n', '<s-l>', ':bn<cr>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<s-h>', ':bp<cr>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<leader>bd', '<cmd>bd<cr>', { desc = 'Delete current buffer' })
+vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>', { desc = 'Previous buffer' })
+vim.keymap.set("n", "<leader>bP", "<cmd>BufferLineTogglePin<cr>", { desc = "Pin buffer" })
+vim.keymap.set('n', '<s-l>', '<cmd>bn<cr>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<s-h>', '<cmd>bp<cr>', { desc = 'Previous buffer' })
 
 vim.keymap.set('n', '<leader>ws', '<c-w>s', { desc = "Split window horizontally" })
 vim.keymap.set('n', '<leader>wv', '<c-w>v', { desc = "Split window vertically" })
@@ -52,13 +52,13 @@ vim.keymap.set('n', '<leader>wd', '<c-w>l', { desc = "Go to right window" })
 vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, { desc = "Go to definition" })
 vim.keymap.set('n', 'gy', function() vim.lsp.buf.type_definition() end, { desc = "Go to type definition" })
 vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, { desc = "Go to references" })
-
-vim.keymap.set('n', '<leader>gd', function() vim.lsp.buf.definition() end, { desc = "Go to definition" })
-vim.keymap.set('n', '<leader>gy', function() vim.lsp.buf.type_definition() end, { desc = "Go to type definition" })
-vim.keymap.set('n', '<leader>gr', function() vim.lsp.buf.references() end, { desc = "Go to references" })
-vim.keymap.set('n', '<leader>ge',
+vim.keymap.set('n', 'ge',
 	function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, wrap = true }) end,
 	{ desc = "Go to next error" }
+)
+vim.keymap.set('n', 'gw',
+	function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN, wrap = true }) end,
+	{ desc = "Go to next warning" }
 )
 vim.keymap.set('n', ']e',
 	function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, wrap = true }) end,
@@ -102,3 +102,7 @@ vim.keymap.set('n', "<leader>cRI", function() require("refactoring").refactor("I
 	{ desc = "Inline function" })
 vim.keymap.set('n', "<leader>cRi", function() require("refactoring").refactor("Inline Variable") end,
 	{ desc = "Inline Variable" })
+
+vim.keymap.set('n', "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit", silent = true })
+vim.keymap.set('n', '<leader>gY', '<cmd>GitLink<cr>', { desc = 'Yank link URL', silent = true })
+vim.keymap.set('n', '<leader>gb', '<cmd>GitLink!<cr>', { desc = 'View in browser', silent = true })
