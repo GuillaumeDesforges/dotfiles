@@ -79,3 +79,4 @@ vim.keymap.set('n', '[w',
 	{ desc = "Go to previous warning" }
 )
 
+vim.keymap.set('n', '<leader>cr', function() vim.lsp.buf.rename() end, { desc = "Rename symbol" })

@@ -18,6 +18,7 @@
 "conform.nvim" = "9.0.0"
 "lazygit.nvim" = "scm"
 "typescript-tools.nvim" = "scm"
+"snacks.nvim" = "2.22.0"
 
 [config]
 plugins_dir = "plugins/"
