@@ -6,9 +6,12 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 require("nvim-tree").setup({
-  filters = {
-    dotfiles = false,
-  },
+	filters = {
+		dotfiles = false,
+	},
+	update_focused_file = {
+		enable = true,
+	},
 })
 
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<cr>', { desc = "Toggle tree" })
