@@ -25,6 +25,11 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", { desc = 'Stop highlighting search results' })
 
 vim.keymap.set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit Neovim' })
+vim.keymap.set("n", "<leader>qs", function() require("persistence").load() end, { desc = 'Open last session (cwd)' })
+vim.keymap.set("n", "<leader>qS", function() require("persistence").select() end, { desc = 'List sessions' })
+vim.keymap.set("n", "<leader>ql", function() require("persistence").load({ last = true }) end,
+	{ desc = 'Open last session' })
+vim.keymap.set("n", "<leader>qd", function() require("persistence").stop() end, { desc = 'Quit without saving session' })
 
 vim.keymap.set('n', '<leader>bd', '<cmd>bd<cr>', { desc = 'Delete current buffer' })
 vim.keymap.set('n', '<leader>bn', '<cmd>BufferLineCycleNext<cr>', { desc = 'Next buffer' })

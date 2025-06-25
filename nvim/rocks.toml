@@ -21,6 +21,7 @@
 "snacks.nvim" = "2.22.0"
 "nvim-lsp-file-operations" = "scm"
 "gitlinker.nvim" = "5.1.0"
+"persistence.nvim" = "3.1.0"
 
 [config]
 plugins_dir = "plugins/"
