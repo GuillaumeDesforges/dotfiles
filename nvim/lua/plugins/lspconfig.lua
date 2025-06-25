@@ -1,8 +1,7 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- gopls
-require('lspconfig')['gopls'].setup {
-	cmd = { 'gopls' },
+require('lspconfig')['gopls'].setup({
 	capabilities = capabilities,
 	settings = {
 		gopls = {
@@ -17,10 +16,13 @@ require('lspconfig')['gopls'].setup {
 	init_options = {
 		usePlaceholders = true,
 	}
-}
+})
+
+-- golangci_lint_ls
+vim.lsp.enable('golangci_lint_ls')
 
 -- lua_ls
-require('lspconfig')['lua_ls'].setup {
+require('lspconfig')['lua_ls'].setup({
 	capabilities = capabilities,
 	on_init = function(client)
 		if client.workspace_folders then
@@ -33,13 +35,11 @@ require('lspconfig')['lua_ls'].setup {
 			end
 		end
 
+		-- when we edit Neovim config, add more settings to LuaLS
 		client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
 			runtime = {
-				-- Tell the language server which version of Lua you're using (most
-				-- likely LuaJIT in the case of Neovim)
 				version = 'LuaJIT',
-				-- Tell the language server how to find Lua modules same way as Neovim
-				-- (see `:h lua-module-load`)
+				-- Tell the language server how to find Lua modules same way as Neovim (see `:h lua-module-load`)
 				path = {
 					'lua/?.lua',
 					'lua/?/init.lua',
@@ -50,15 +50,9 @@ require('lspconfig')['lua_ls'].setup {
 				checkThirdParty = true,
 				library = {
 					vim.env.VIMRUNTIME,
-					-- Depending on the usage, you might want to add additional paths
-					-- here.
 					'${3rd}/luv/library',
-					-- '${3rd}/busted/library',
 				}
-				-- Or pull in all of 'runtimepath'.
-				-- NOTE: this is a lot slower and will cause issues when working on
-				-- your own configuration.
-				-- See https://github.com/neovim/nvim-lspconfig/issues/3189
+				-- https://github.com/neovim/nvim-lspconfig/issues/3189
 				-- library = {
 				--   vim.api.nvim_get_runtime_file('', true),
 				-- }
@@ -68,7 +62,7 @@ require('lspconfig')['lua_ls'].setup {
 	settings = {
 		Lua = {},
 	},
-}
+})
 
 -- nixd
 vim.lsp.enable('nixd')
