@@ -1,24 +1,15 @@
--- leader key is spacebar
-vim.g.mapleader = " "
-
--- wrapping
-vim.opt.wrap = false
-vim.opt.breakindent = true
-
--- use system clipboard to yank/paste
+-- system
 vim.opt.clipboard = "unnamedplus"
-
--- tabs
+vim.opt.confirm = true
+-- ui
+vim.opt.number = true
+vim.opt.relativenumber = true
+-- editor
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
-
--- show line number
-vim.opt.number = true
-vim.opt.relativenumber = true
-
--- clear highlight
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.opt.wrap = false
+vim.opt.breakindent = true
 
 -- plugins
 require("bootstrap/rocks")
@@ -29,14 +20,18 @@ require("bootstrap/rocks")
 -- key bindings
 --
 
-vim.keymap.set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit' })
+vim.g.mapleader = " "
+
+vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", { desc = 'Stop highlighting search results' })
+
+vim.keymap.set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit Neovim' })
 
 vim.keymap.set('n', '<leader>bd', '<cmd>bd<cr>', { desc = 'Delete current buffer' })
-vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<leader>bn', '<cmd>BufferLineCycleNext<cr>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<leader>bp', '<cmd>BufferLineCyclePrev<cr>', { desc = 'Previous buffer' })
 vim.keymap.set("n", "<leader>bP", "<cmd>BufferLineTogglePin<cr>", { desc = "Pin buffer" })
-vim.keymap.set('n', '<s-l>', '<cmd>bn<cr>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<s-h>', '<cmd>bp<cr>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<s-l>', '<cmd>BufferLineCycleNext<cr>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<s-h>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'Previous buffer' })
 
 vim.keymap.set('n', '<leader>ws', '<c-w>s', { desc = "Split window horizontally" })
 vim.keymap.set('n', '<leader>wv', '<c-w>v', { desc = "Split window vertically" })
