@@ -10,6 +10,7 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.wrap = false
 vim.opt.breakindent = true
+vim.opt.smartcase = true
 
 -- plugins
 require("bootstrap/rocks")
@@ -49,10 +50,16 @@ vim.keymap.set('n', '<leader>wh', '<c-w>k', { desc = "Go to up window" })
 vim.keymap.set('n', '<leader>wh', '<c-w>l', { desc = "Go to right window" })
 vim.keymap.set('n', '<leader>wd', '<c-w>l', { desc = "Go to right window" })
 
-vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, { desc = "Go to definition" })
-vim.keymap.set('n', 'gy', function() vim.lsp.buf.type_definition() end, { desc = "Go to type definition" })
-vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, { desc = "Go to reference" })
-vim.keymap.set('n', 'gI', function() vim.lsp.buf.implementation() end, { desc = "Go to implementation" })
+vim.keymap.set('n', 'gd', function() require('telescope.builtin').lsp_definitions() end,
+	{ desc = "Go to definition", noremap = true, silent = true })
+vim.keymap.set('n', 'gy', function() require('telescope.builtin').lsp_type_definition() end,
+	{ desc = "Go to type definition", noremap = true, silent = true })
+vim.keymap.set('n', 'gr', function() require('telescope.builtin').lsp_references() end,
+	{ desc = "Go to reference", noremap = true, silent = true })
+vim.keymap.set('n', 'gI', function() require('telescope.builtin').lsp_implementation() end,
+	{ desc = "Go to implementation", noremap = true, silent = true })
+vim.keymap.set('n', 'gD', function() require('telescope.builtin').diagnostics() end,
+	{ desc = "Go to diagnostic", noremap = true, silent = true })
 vim.keymap.set('n', 'ge',
 	function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, wrap = true }) end,
 	{ desc = "Go to next error" }
