@@ -12,6 +12,9 @@ require("nvim-tree").setup({
 	update_focused_file = {
 		enable = true,
 	},
+	view = {
+		adaptive_size = true,
+	},
 })
 
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<cr>', { desc = "Toggle tree" })
