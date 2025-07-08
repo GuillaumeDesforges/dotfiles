@@ -52,7 +52,7 @@ vim.keymap.set('n', '<leader>wd', '<c-w>l', { desc = "Go to right window" })
 
 vim.keymap.set('n', 'gd', function() require('telescope.builtin').lsp_definitions() end,
 	{ desc = "Go to definition", noremap = true, silent = true })
-vim.keymap.set('n', 'gy', function() require('telescope.builtin').lsp_type_definition() end,
+vim.keymap.set('n', 'gy', function() require('telescope.builtin').lsp_type_definitions() end,
 	{ desc = "Go to type definition", noremap = true, silent = true })
 vim.keymap.set('n', 'gr', function() require('telescope.builtin').lsp_references() end,
 	{ desc = "Go to reference", noremap = true, silent = true })
