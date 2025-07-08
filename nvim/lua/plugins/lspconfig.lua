@@ -8,7 +8,7 @@ require('lspconfig')['gopls'].setup({
 			experimentalPostfixCompletions = true,
 			analyses = {
 				unusedparams = true,
-				shadow = true,
+				shadow = false,
 			},
 			staticcheck = true,
 		},
