@@ -56,7 +56,7 @@ vim.keymap.set('n', 'gy', function() require('telescope.builtin').lsp_type_defin
 	{ desc = "Go to type definition", noremap = true, silent = true })
 vim.keymap.set('n', 'gr', function() require('telescope.builtin').lsp_references() end,
 	{ desc = "Go to reference", noremap = true, silent = true })
-vim.keymap.set('n', 'gI', function() require('telescope.builtin').lsp_implementation() end,
+vim.keymap.set('n', 'gI', function() require('telescope.builtin').lsp_implementations() end,
 	{ desc = "Go to implementation", noremap = true, silent = true })
 vim.keymap.set('n', 'gD', function() require('telescope.builtin').diagnostics() end,
 	{ desc = "Go to diagnostic", noremap = true, silent = true })
