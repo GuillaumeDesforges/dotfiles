@@ -1,5 +1,8 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+-- eslint
+vim.lsp.enable('eslint')
+
 -- gopls
 require('lspconfig')['gopls'].setup({
 	capabilities = capabilities,
