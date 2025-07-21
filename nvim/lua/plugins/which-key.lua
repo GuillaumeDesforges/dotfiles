@@ -9,6 +9,7 @@ wk.add({
 	{ '<leader>g',  group = 'Git' },
 	{ '<leader>gb', group = 'Buffer' },
 	{ '<leader>gh', group = 'Hunk' },
+	{ '<leader>gl', group = 'Link' },
 	{ '<leader>gt', group = 'Toggle' },
 	{ '<leader>q',  group = 'Session' },
 	{ '<leader>w',  group = 'Windows' },

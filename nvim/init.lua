@@ -85,6 +85,14 @@ vim.keymap.set('n', '[w',
 	{ desc = "Go to previous warning" }
 )
 
+vim.keymap.set('n', ']h', function()
+	require("gitsigns").nav_hunk('next')
+end, { desc = "Go to next git hunk" })
+
+vim.keymap.set('n', '[h', function()
+	require("gitsigns").nav_hunk('prev')
+end, { desc = "Go to previous git hunk" })
+
 vim.api.nvim_create_autocmd("TermEnter", {
 	callback = function()
 		-- If the terminal window is lazygit, we do not make changes to avoid clashes
@@ -112,5 +120,39 @@ vim.keymap.set('n', "<leader>cRi", function() require("refactoring").refactor("I
 	{ desc = "Inline Variable" })
 
 vim.keymap.set('n', "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit", silent = true })
-vim.keymap.set('n', '<leader>gY', '<cmd>GitLink<cr>', { desc = 'Yank link URL', silent = true })
-vim.keymap.set('n', '<leader>gb', '<cmd>GitLink!<cr>', { desc = 'View in browser', silent = true })
+
+vim.keymap.set('n', '<leader>gly', '<cmd>GitLink<cr>', { desc = 'Yank link URL', silent = true })
+vim.keymap.set('n', '<leader>glb', '<cmd>GitLink!<cr>', { desc = 'View in browser', silent = true })
+
+vim.keymap.set('n', '<leader>ghs', require("gitsigns").stage_hunk, { desc = "Stage hunk" })
+vim.keymap.set('n', '<leader>ghr', require("gitsigns").reset_hunk, { desc = "Reset hunk" })
+
+vim.keymap.set('v', '<leader>ghs', function()
+	require("gitsigns").stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+end, { desc = "Stage hunk" })
+
+vim.keymap.set('v', '<leader>ghr', function()
+	require("gitsigns").reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+end, { desc = "Reset hunk" })
+
+vim.keymap.set('n', '<leader>gbS', require("gitsigns").stage_buffer, { desc = "Stage buffer" })
+vim.keymap.set('n', '<leader>gbR', require("gitsigns").reset_buffer, { desc = "Reset buffer" })
+vim.keymap.set('n', '<leader>ghp', require("gitsigns").preview_hunk, { desc = "Preview hunk" })
+vim.keymap.set('n', '<leader>ghi', require("gitsigns").preview_hunk_inline, { desc = "Preview hunk" })
+
+vim.keymap.set('n', '<leader>gB', function()
+	require("gitsigns").blame_line({ full = true })
+end, { desc = "Blame line" })
+
+vim.keymap.set('n', '<leader>ghd', require("gitsigns").diffthis, { desc = "Diff hunk" })
+
+vim.keymap.set('n', '<leader>ghD', function()
+	require("gitsigns").diffthis('~')
+end, { desc = "Diff hunk+" })
+
+vim.keymap.set('n', '<leader>ghQ', function() require("gitsigns").setqflist('all') end, { desc = "Quick fix (all)" })
+vim.keymap.set('n', '<leader>ghq', require("gitsigns").setqflist, { desc = "Quick fix" })
+
+-- Toggles
+vim.keymap.set('n', '<leader>gtb', require("gitsigns").toggle_current_line_blame, { desc = "Current line blame" })
+vim.keymap.set('n', '<leader>gtw', require("gitsigns").toggle_word_diff, { desc = "Word diff" })
