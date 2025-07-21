@@ -8,7 +8,7 @@ conform.setup({
 	},
 	format_on_save = {
 		-- options of conform.format()
-		timeout_ms = 500,
+		timeout_ms = 1000,
 		lsp_format = "fallback",
 	},
 })
