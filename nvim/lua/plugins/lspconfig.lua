@@ -1,10 +1,16 @@
+vim.lsp.enable("pyright")
+vim.lsp.enable("rust_analyzer")
+vim.lsp.enable('eslint')
+vim.lsp.enable('golangci_lint_ls')
+vim.lsp.enable('nixd')
+vim.lsp.enable('ruff')
+vim.lsp.enable("gopls")
+vim.lsp.enable("lua_ls")
+
+-- custom configs
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- eslint
-vim.lsp.enable('eslint')
-
--- gopls
-require('lspconfig')['gopls'].setup({
+vim.lsp.config("gopls", {
 	capabilities = capabilities,
 	settings = {
 		gopls = {
@@ -21,11 +27,7 @@ require('lspconfig')['gopls'].setup({
 	}
 })
 
--- golangci_lint_ls
-vim.lsp.enable('golangci_lint_ls')
-
--- lua_ls
-require('lspconfig')['lua_ls'].setup({
+vim.lsp.config('lua_ls', {
 	capabilities = capabilities,
 	on_init = function(client)
 		if client.workspace_folders then
@@ -66,6 +68,3 @@ require('lspconfig')['lua_ls'].setup({
 		Lua = {},
 	},
 })
-
--- nixd
-vim.lsp.enable('nixd')
