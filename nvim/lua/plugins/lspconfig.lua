@@ -6,9 +6,38 @@ vim.lsp.enable('nixd')
 vim.lsp.enable('ruff')
 vim.lsp.enable("gopls")
 vim.lsp.enable("lua_ls")
+vim.lsp.enable("tsgo")
 
 -- custom configs
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+-- not in latest luarocks release of nvim-lspconfig
+vim.lsp.config('tsgo', {
+	capabilities = capabilities,
+	cmd = { 'pnpm', 'tsgo', '--lsp', '--stdio' },
+	filetypes = {
+		'javascript',
+		'javascriptreact',
+		'javascript.jsx',
+		'typescript',
+		'typescriptreact',
+		'typescript.tsx',
+	},
+	root_dir = function(bufnr, on_dir)
+		-- The project root is where the LSP can be started from
+		-- As stated in the documentation above, this LSP supports monorepos and simple projects.
+		-- We select then from the project root, which is identified by the presence of a package
+		-- manager lock file.
+		local project_root_markers = { 'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', 'bun.lockb', 'bun.lock' }
+		-- Give the root markers equal priority by wrapping them in a table
+		local project_root = vim.fs.root(bufnr, project_root_markers)
+		if not project_root then
+			return
+		end
+
+		on_dir(project_root)
+	end,
+})
 
 vim.lsp.config("gopls", {
 	capabilities = capabilities,
