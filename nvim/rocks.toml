@@ -1,5 +1,14 @@
 [rocks]
 
+[luarocks]
+servers = [
+	 "https://luarocks.org/manifests/neorocks/",
+	 "https://lumen-oss.github.io/rocks-binaries/"
+]
+dev_servers = [
+	 "https://lumen-oss.github.io/rocks-binaries-dev/"
+]
+
 [plugins]
 "rocks.nvim" = "2.42.4"
 "flash.nvim" = "2.1.0"
