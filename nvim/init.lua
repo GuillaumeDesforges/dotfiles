@@ -167,3 +167,9 @@ vim.keymap.set('n', '<leader>ghq', require("gitsigns").setqflist, { desc = "Quic
 -- Toggles
 vim.keymap.set('n', '<leader>gtb', require("gitsigns").toggle_current_line_blame, { desc = "Current line blame" })
 vim.keymap.set('n', '<leader>gtw', require("gitsigns").toggle_word_diff, { desc = "Word diff" })
+
+-- Auto command (per file type)
+vim.api.nvim_create_autocmd('BufWinEnter', {
+	pattern = { '*.md' },
+	command = 'setlocal wrap'
+})
