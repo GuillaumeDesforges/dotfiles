@@ -12,6 +12,11 @@ vim.opt.wrap = false
 vim.opt.breakindent = true
 vim.opt.smartcase = true
 
+vim.api.nvim_create_autocmd('BufEnter', {
+	pattern = { '*.md' },
+	command = 'setlocal wrap'
+})
+
 -- plugins
 require("bootstrap/rocks")
 
