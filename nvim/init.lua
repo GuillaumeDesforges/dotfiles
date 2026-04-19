@@ -55,6 +55,12 @@ vim.keymap.set('n', '<leader>wh', '<c-w>k', { desc = "Go to up window" })
 vim.keymap.set('n', '<leader>wh', '<c-w>l', { desc = "Go to right window" })
 vim.keymap.set('n', '<leader>wd', '<c-w>l', { desc = "Go to right window" })
 
+vim.keymap.set({ 'n', 'x', 'o' }, 's', function() require('flash').jump() end, { desc = 'Flash' })
+vim.keymap.set({ 'n', 'x', 'o' }, 'S', function() require('flash').treesitter() end, { desc = 'Flash Treesitter' })
+vim.keymap.set('o', 'r', function() require('flash').remote() end, { desc = 'Remote Flash' })
+vim.keymap.set({ 'o', 'x' }, 'R', function() require('flash').treesitter_search() end, { desc = 'Treesitter Search' })
+vim.keymap.set('c', '<c-s>', function() require('flash').toggle() end, { desc = 'Toggle Flash Search' })
+
 vim.keymap.set('n', 'gd', function() require('telescope.builtin').lsp_definitions() end,
 	{ desc = "Go to definition", noremap = true, silent = true })
 vim.keymap.set('n', 'gy', function() require('telescope.builtin').lsp_type_definitions() end,
