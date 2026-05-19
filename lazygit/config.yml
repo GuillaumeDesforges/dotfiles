@@ -4,3 +4,8 @@ os:
   # from https://github.com/kdheepak/lazygit.nvim/issues/67
   edit: "nvim --server $NVIM --remote-send '<cmd>close<cr><cmd>lua EditFromLazygit({{filename}})<CR>'"
   editAtLine: "nvim --server $NVIM --remote-send '<cmd>close<CR><cmd>lua EditLineFromLazygit({{filename}},{{line}})<CR>'"
+customCommands:
+  - key: "D"
+    context: "commits"
+    description: "Open commit in diffview"
+    command: "nvim --server $NVIM --remote-send '<cmd>close<cr><cmd>DiffviewOpen {{.SelectedLocalCommit.Sha}}^!<cr>'"
