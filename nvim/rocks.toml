@@ -35,6 +35,7 @@ dev_servers = [
 "gitsigns.nvim" = "1.0.2"
 "codecompanion.nvim" = "scm"
 "diffview.nvim" = "scm"
+"copilot.lua" = "2.0.4"
 
 [config]
 plugins_dir = "plugins/"
