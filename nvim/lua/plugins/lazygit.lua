@@ -1,5 +1,7 @@
 require("lazygit")
 
+vim.g.lazygit_floating_window_scaling_factor = 1.0
+
 -- from https://github.com/kdheepak/lazygit.nvim/issues/67
 function EditLineFromLazygit(file_path, line)
 	local path = vim.fn.expand("%:p")
