@@ -34,6 +34,7 @@ dev_servers = [
 "avante.nvim" = "0.0.25"
 "gitsigns.nvim" = "1.0.2"
 "codecompanion.nvim" = "scm"
+"diffview.nvim" = "scm"
 
 [config]
 plugins_dir = "plugins/"
