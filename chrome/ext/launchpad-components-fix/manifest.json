@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Launchpad Linux Port-Name Fix",
+  "version": "1.0.0",
+  "description": "Restores DAW/MIDI suffixes truncated by Linux's 32-char rawmidi name buffer so Novation Components detects Launchpads on Linux.",
+  "content_scripts": [
+    {
+      "matches": ["https://components.novationmusic.com/*"],
+      "js": ["inject.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": true
+    }
+  ]
+}
