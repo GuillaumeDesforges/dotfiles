@@ -33,7 +33,6 @@ dev_servers = [
 "persistence.nvim" = "3.1.0"
 "gitsigns.nvim" = "1.0.2"
 "diffview.nvim" = "scm"
-"copilot.lua" = "2.0.4"
 
 [config]
 plugins_dir = "plugins/"
