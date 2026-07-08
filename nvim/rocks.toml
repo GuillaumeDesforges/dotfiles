@@ -32,7 +32,6 @@ dev_servers = [
 "gitlinker.nvim" = "5.1.0"
 "persistence.nvim" = "3.1.0"
 "gitsigns.nvim" = "1.0.2"
-"codecompanion.nvim" = "scm"
 "diffview.nvim" = "scm"
 "copilot.lua" = "2.0.4"
 
