@@ -10,7 +10,7 @@ dev_servers = [
 ]
 
 [plugins]
-"rocks.nvim" = "2.42.4"
+"rocks.nvim" = "2.49.0"
 "flash.nvim" = "2.1.0"
 "which-key.nvim" = "3.17.0"
 "rocks-config.nvim" = "3.1.1"
