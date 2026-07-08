@@ -31,7 +31,6 @@ dev_servers = [
 "nvim-lsp-file-operations" = "scm"
 "gitlinker.nvim" = "5.1.0"
 "persistence.nvim" = "3.1.0"
-"avante.nvim" = "0.0.25"
 "gitsigns.nvim" = "1.0.2"
 "codecompanion.nvim" = "scm"
 "diffview.nvim" = "scm"
