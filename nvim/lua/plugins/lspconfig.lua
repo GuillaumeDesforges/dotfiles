@@ -7,6 +7,7 @@ vim.lsp.enable('ruff')
 vim.lsp.enable("gopls")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("zls")
+vim.lsp.enable("ty")
 
 -- custom configs
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
