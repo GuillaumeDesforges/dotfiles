@@ -5,7 +5,15 @@ vim.g.loaded_netrwPlugin = 1
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
 
+local function on_attach(bufnr)
+	local api = require("nvim-tree.api")
+	api.config.mappings.default_on_attach(bufnr)
+	vim.keymap.set('n', '<leader>g', api.tree.toggle_git_clean_filter,
+		{ buffer = bufnr, noremap = true, silent = true, nowait = true, desc = "Toggle git-changes-only" })
+end
+
 require("nvim-tree").setup({
+	on_attach = on_attach,
 	filters = {
 		dotfiles = false,
 		git_ignored = true,
@@ -29,6 +37,3 @@ require("nvim-tree").setup({
 })
 
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<cr>', { desc = "Toggle tree" })
-vim.keymap.set('n', '<leader>E', function()
-	require("nvim-tree.api").tree.toggle_git_clean_filter()
-end, { desc = "Toggle git-changes-only in tree" })
