@@ -22,6 +22,9 @@ require("bootstrap/rocks")
 
 -- plugin configs in `./lua/plugins/` are loaded by rocks-configs
 
+-- plugins developed locally, not managed by rocks
+vim.opt.rtp:prepend(vim.fn.expand("~/repos/guillaumedesforges/worktabs.nvim"))
+
 --
 -- key bindings
 --
@@ -131,6 +134,8 @@ vim.keymap.set('n', "<leader>cRi", function() require("refactoring").refactor("I
 	{ desc = "Inline Variable" })
 
 vim.keymap.set('n', "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit", silent = true })
+
+vim.keymap.set('n', "<leader>gw", "<cmd>Worktabs<cr>", { desc = "Switch worktree", silent = true })
 
 vim.keymap.set('n', '<leader>gly', '<cmd>GitLink<cr>', { desc = 'Yank link URL', silent = true })
 vim.keymap.set('n', '<leader>glb', '<cmd>GitLink!<cr>', { desc = 'View in browser', silent = true })
